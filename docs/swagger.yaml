@@ -1,0 +1,41 @@
+basePath: /
+definitions:
+  main.CustomType:
+    properties:
+      customField:
+        type: object
+    type: object
+  main.sampleResponse:
+    properties:
+      data:
+        $ref: '#/definitions/main.CustomType'
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: Sample API App to reproduce the bug
+  title: Swaggo API
+  version: "1.0"
+paths:
+  /custom_type:
+    get:
+      description: returns a response with custom struct
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.sampleResponse'
+      summary: Sample response
+      tags:
+      - custom_struct
+schemes:
+- http
+swagger: "2.0"

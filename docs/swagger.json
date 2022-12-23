@@ -1,0 +1,63 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Sample API App to reproduce the bug",
+        "title": "Swaggo API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/custom_type": {
+            "get": {
+                "description": "returns a response with custom struct",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "custom_struct"
+                ],
+                "summary": "Sample response",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.sampleResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.CustomType": {
+            "type": "object",
+            "properties": {
+                "customField": {
+                    "type": "object"
+                }
+            }
+        },
+        "main.sampleResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/main.CustomType"
+                }
+            }
+        }
+    }
+}
